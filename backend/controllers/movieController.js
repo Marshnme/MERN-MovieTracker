@@ -1,35 +1,42 @@
+const asyncHandler = require('express-async-handler')
+
+
 //@desc Get Movies
 //@route GET /api/movies
 //@access Private
-const getMovies = (req,res) => {
+const getMovies = asyncHandler(async(req,res) => {
     res.status(200).json({message:`get movies`})
-}
+})
 
-//@desc Add Movies
+//@desc Add Movie
 //@route POST /api/movies
 //@access Private
-const addMovies = (req,res) => {
-    res.status(200).json({message:`add movies`})
-}
+const addMovie = asyncHandler(async(req,res) => {
+    if(!req.body.test){
+        res.status(400)
+        throw new Error('please add a text field')
+    }
+    res.status(200).json({message:`add movie`})
+})
 
 //@desc Update Movies
 //@route UPDATE /api/movies/:id
 //@access Private
-const updateMovies = (req,res) => {
+const updateMovie = asyncHandler(async(req,res) => {
     res.status(200).json({message:`update movies ${req.params.id}`})
-}
+})
 
 //@desc Delete Movies
 //@route DELETE /api/movies/:id
 //@access Private
-const deleteMovies = (req,res) => {
+const deleteMovie = asyncHandler(async(req,res) => {
     res.status(200).json({message:`delete movies ${req.params.id}`})
-}
+})
 
 module.exports = {
     getMovies,
-    addMovies,
-    updateMovies,
-    deleteMovies,
+    addMovie,
+    updateMovie,
+    deleteMovie,
 
 }
