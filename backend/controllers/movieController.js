@@ -5,7 +5,7 @@ const Movie = require(`../models/movieModel`)
 //@route GET /api/movies
 //@access Private
 const getMovies = asyncHandler(async(req,res) => {
-    const movies = await Movie.find()
+    const movies = await Movie.find({user:req.user.id})
     res.status(200).json(movies)
 })
 
@@ -23,6 +23,7 @@ const addMovie = asyncHandler(async(req,res) => {
         type:req.body.type,
         year:req.body.year,
         imdbID:req.body.imdbID,
+        user:req.user.id
     })
     res.status(200).json(movie)
 })
