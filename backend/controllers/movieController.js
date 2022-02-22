@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const Movie = require(`../models/movieModel`)
+const User = require(`../models/userModel`)
 
 //@desc Get Movies
 //@route GET /api/movies
@@ -37,8 +38,19 @@ const updateMovie = asyncHandler(async(req,res) => {
         res.status(400)
         throw new Error("Movie not found")
     }
-    const updatedGoal = await Movie.findByIdAndUpdate(req.params.id, req.body,{new:true})
-    res.status(200).json(updatedGoal)
+
+    const user = await User.findById(req.user.id)
+    if(!user){
+        res.status(401)
+        throw new Error('user not found')
+    }
+
+    if(movie.user.toString() !== user.id){
+        res.status(401)
+        throw new Error('User not authorized')
+    }
+    const updatedMovie = await Movie.findByIdAndUpdate(req.params.id, req.body,{new:true})
+    res.status(200).json(updatedMovie)
 })
 
 //@desc Delete Movies
@@ -49,6 +61,17 @@ const deleteMovie = asyncHandler(async(req,res) => {
     if(!movie){
         res.status(400)
         throw new Error("Movie not found")
+    }
+
+    const user = await User.findById(req.user.id)
+    if(!user){
+        res.status(401)
+        throw new Error('user not found')
+    }
+
+    if(movie.user.toString() !== user.id){
+        res.status(401)
+        throw new Error('User not authorized')
     }
     // works but not whats in video
     // const deletedMovie = await Movie.findByIdAndDelete(req.params.id)
