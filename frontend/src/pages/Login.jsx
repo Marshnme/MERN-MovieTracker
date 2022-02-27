@@ -34,13 +34,13 @@ function Login() {
             
                 <div className="form-group">
                     <form>
-                        <input type="email" ClassName="form-control" id="email" name="email" value = {email} placeholder="Enter your email" onChange={onChange}></input>
+                        <input type="email" className="form-control" id="email" name="email" value = {email} placeholder="Enter your email" onChange={onChange}></input>
                     </form>
                 </div>
 
                 <div className="form-group">
                     <form>
-                        <input type="password" ClassName="form-control" id="password" name="password" value = {password} placeholder="Enter your password" onChange={onChange}></input>
+                        <input type="password" className="form-control" id="password" name="password" value = {password} placeholder="Enter your password" onChange={onChange}></input>
                     </form>
                 </div>
                 
