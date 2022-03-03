@@ -80,7 +80,9 @@ export const moviesSlice = createSlice({
             .addCase(deleteMovie.fulfilled,(state,action) =>{
                 state.isLoading = false
                 state.isSuccess = true
-                state.movies = action.payload
+                state.movies = state.movies.filter(
+                    (movie) => movie._id !== action.payload.id
+                )
             })
             .addCase(deleteMovie.rejected,(state,action) =>{
                 state.isLoading = false

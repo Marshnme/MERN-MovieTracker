@@ -24,14 +24,14 @@ const getMovies = async(token) =>{
     return response.data
 }
 
-const deleteMovie = async(id,token) => {
+const deleteMovie = async(movieId,token) => {
     const config = {
         headers:{
             Authorization:`Bearer ${token}`
         }
     }
 
-    const response = await axios.post(API_URL + `${id}`,config)
+    const response = await axios.delete(API_URL + movieId,config)
     return response.data
 }
 
