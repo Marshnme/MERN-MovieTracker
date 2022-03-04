@@ -14,7 +14,26 @@ function MovieSearch(){
     },[])
     console.log("allMovies",allMovies)
     return(
-        <div><p>hello</p></div>
+        <div>
+            {allMovies.map((movie) =>(
+                
+                movie.Poster !== "N/A" ? (
+                    <div>
+                        <img src={movie.Poster}></img>
+                    </div>
+                    
+                ):(
+                    <div>
+                        <h3>no Poster for movie</h3>
+                    </div>
+                    
+                )
+                    
+                    
+                    
+                
+            ))}
+        </div>
     )
 }
 
