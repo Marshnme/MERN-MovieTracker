@@ -30,7 +30,7 @@ const getAllMovies = async(searchedMovie,pageNum) =>{
         //     return null
         // }else{
     const response = await axios.request(options)
-    return response.data
+    return response.data.Search
            
 }
 

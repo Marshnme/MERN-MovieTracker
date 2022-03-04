@@ -4,7 +4,7 @@ import movieService from '../movies/movieService'
 
 const initialState = {
     movies:[],
-    allMovie:[],
+    allMovies:[],
     isError: false,
     isSuccess : false,
     isLoading: false,
@@ -80,6 +80,19 @@ export const moviesSlice = createSlice({
                 state.movies = action.payload
             })
             .addCase(getUserMovies.rejected,(state,action) =>{
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(getAllMovies.pending,(state) =>{
+                state.isLoading = true
+            })
+            .addCase(getAllMovies.fulfilled,(state,action) =>{
+                state.isLoading = false
+                state.isSuccess = true
+                state.allMovies = action.payload
+            })
+            .addCase(getAllMovies.rejected,(state,action) =>{
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
