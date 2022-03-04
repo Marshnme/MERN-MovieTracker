@@ -4,6 +4,7 @@ import movieService from '../movies/movieService'
 
 const initialState = {
     movies:[],
+    allMovie:[],
     isError: false,
     isSuccess : false,
     isLoading: false,
@@ -20,7 +21,16 @@ export const createMovie = createAsyncThunk('movie/create', async(movieData,thun
     }
 })
 
-export const getMovies = createAsyncThunk('movies/getAll',async(_,thunkAPI) =>{
+export const getAllMovies = createAsyncThunk('movies/getAllMovies',async(searchedMovie,pageNum,thunkAPI) =>{
+    try {
+        return await movieService.getAllMovies(searchedMovie,pageNum)
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const getUserMovies = createAsyncThunk('movies/getUserMovies',async(_,thunkAPI) =>{
     try {
         const token = thunkAPI.getState().auth.user.token
         return await movieService.getMovies(token)
@@ -61,15 +71,15 @@ export const moviesSlice = createSlice({
                 state.isError = true
                 state.message = action.payload
             })
-            .addCase(getMovies.pending,(state) =>{
+            .addCase(getUserMovies.pending,(state) =>{
                 state.isLoading = true
             })
-            .addCase(getMovies.fulfilled,(state,action) =>{
+            .addCase(getUserMovies.fulfilled,(state,action) =>{
                 state.isLoading = false
                 state.isSuccess = true
                 state.movies = action.payload
             })
-            .addCase(getMovies.rejected,(state,action) =>{
+            .addCase(getUserMovies.rejected,(state,action) =>{
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

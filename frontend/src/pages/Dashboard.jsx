@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux';
 import MovieSearch from '../components/MovieSearch';
 import Spinner from '../components/Spinner';
-import {getMovies,reset} from '../features/movies/movieSlice';
+import {getUserMovies,reset} from '../features/movies/movieSlice';
 import MovieItem from '../components/MovieItem';
 function Dashboard() {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ function Dashboard() {
             navigate('/login')
         }
 
-        dispatch(getMovies())
+        dispatch(getUserMovies())
 
         return () => {
             dispatch(reset)
