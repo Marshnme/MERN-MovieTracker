@@ -14,12 +14,13 @@ const createMovie = async(movieData,token) =>{
     return response.data
 }
 
-const getAllMovies = async(searchedMovie,pageNum) =>{
-
+const getAllMovies = async(Title,Page) =>{
+    console.log("title",Title)
+    console.log("pagenum",Page)
     let options = {
         method: 'GET',
         url: 'https://ott-details.p.rapidapi.com/',
-        params: {s: `${searchedMovie}`, page: `${pageNum}`, r: 'json'},
+        params: {s: `${Title}`, page: `${Page}`, r: 'json'},
         headers: {
             'x-rapidapi-key': '3e6f97ba46mshd0e970af8b190bcp1daa64jsn2a48b3562207',
             'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com'

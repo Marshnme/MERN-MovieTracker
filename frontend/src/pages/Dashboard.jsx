@@ -1,6 +1,6 @@
 import React from 'react';
 import {useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux';
 import MovieSearch from '../components/MovieSearch';
 import Spinner from '../components/Spinner';
@@ -37,7 +37,7 @@ function Dashboard() {
                 <p>Movies Dashboard</p>
             </section>
 
-            <MovieSearch/>
+            {/* <MovieSearch/> */}
 
             <section className="content">
                 {console.log(movies)}
@@ -49,7 +49,13 @@ function Dashboard() {
                     ))}
                 </div>
                 ) : (
-                    <p>You havent added any movies</p>
+                    <>
+                        <p>You havent added any movies</p>
+                        <Link to='/movieSearch'>
+                            <button>Add some movies?</button> 
+                        </Link>
+                        
+                    </>
                 )}
             </section>
         </>
