@@ -70,7 +70,7 @@ function MovieSearch(){
         return () => {
             dispatch(reset)
         } 
-    },[searchQuery])
+    },[searchQuery.Page])
     
     
     if(isLoading){
@@ -98,11 +98,11 @@ function MovieSearch(){
                 </form>
                 
             </div>
-            <div  className='movie-wrapper'>
+            <div  className='movie-list-wrapper'>
                 
                 {allMovies.map((movie) =>(
                     movie.Poster !== 'N/A' ? (
-                        <div key = {movie.imdbID}>
+                        <div key = {movie.imdbID} className='movie-wrapper'>
                             <img src={movie.Poster}></img>
                             <p>{movie.Title}</p>
                             <span>{movie.Year}</span>
