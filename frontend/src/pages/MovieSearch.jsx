@@ -29,10 +29,31 @@ function MovieSearch(){
         e.preventDefault()
         
         dispatch(getAllMovies(searchQuery))
+    }
+
+    const nextPage = (e) => {
+        e.preventDefault()
+        let newPage = parseInt(searchQuery.Page) + 1
         setSearchQuery({
-            Title:'',
-            Page:searchQuery.Page,
+            Title:searchQuery.Title,
+            Page:newPage.toString()
         })
+        console.log("pagenum-Next",searchQuery.Page)
+        
+    }
+    const previousPage = (e) => {
+        e.preventDefault()
+        if(searchQuery.Page === "1"){
+            
+        }else{
+            let newPage = parseInt(searchQuery.Page) - 1
+            setSearchQuery({
+                Title:searchQuery.Title,
+                Page:newPage.toString()
+            })
+            console.log("pagenum-Prev",searchQuery.Page)
+            
+        }
     }
     
     useEffect(() =>{
@@ -49,7 +70,7 @@ function MovieSearch(){
         return () => {
             dispatch(reset)
         } 
-    },[])
+    },[searchQuery])
     
     
     if(isLoading){
@@ -95,6 +116,8 @@ function MovieSearch(){
                     ) 
                 ))}
             </div>
+            <button onClick={previousPage}>Previous Page</button>
+            <button onClick={nextPage}>Next Page</button>
         </div>
     )
 }

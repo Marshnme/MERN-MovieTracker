@@ -23,8 +23,6 @@ export const createMovie = createAsyncThunk('movie/create', async(movieData,thun
 
 export const getAllMovies = createAsyncThunk('movies/getAllMovies',async({Title,Page},thunkAPI) =>{
     try {
-        console.log("title",Title)
-        console.log("pagenum",Page)
         return await movieService.getAllMovies(Title,Page)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
