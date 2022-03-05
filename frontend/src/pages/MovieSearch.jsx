@@ -25,13 +25,11 @@ function MovieSearch(){
                 ):(
                     <div>
                         <h3>no Poster for movie</h3>
+                        <h3>{movie.Title}</h3>
                     </div>
                     
                 )
                     
-                    
-                    
-                
             ))}
         </div>
     )
