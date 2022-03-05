@@ -15,8 +15,7 @@ const createMovie = async(movieData,token) =>{
 }
 
 const getAllMovies = async(Title,Page) =>{
-    console.log("title",Title)
-    console.log("pagenum",Page)
+    
     let options = {
         method: 'GET',
         url: 'https://ott-details.p.rapidapi.com/',
