@@ -57,7 +57,7 @@ function MovieSearch(){
     }
     
     useEffect(() =>{
-        
+        window.scrollTo(0, 0)
         if(isError){
             console.log(message)
         }
