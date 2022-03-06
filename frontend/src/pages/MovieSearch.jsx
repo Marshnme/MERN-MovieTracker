@@ -92,7 +92,7 @@ function MovieSearch(){
     return(
         <div>
             <div>
-                <form onSubmit={searchForMovie}>
+                <form className='movie-search-form'onSubmit={searchForMovie}>
                     <input type='text' placeholder='Search for a movie' name="Title" value={searchQuery.Title} onChange={onChange}></input>
                     <button type='submit' > Search </button>
                 </form>
@@ -109,7 +109,7 @@ function MovieSearch(){
                         </div>
                         
                     ):(
-                        <div key = {movie.imdbID}>
+                        <div key = {movie.imdbID} className='movie-wrapper'>
                             <h3>no Poster for movie</h3>
                             <h3>{movie.Title}</h3>
                         </div>
