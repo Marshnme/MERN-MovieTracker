@@ -14,15 +14,15 @@ const getMovies = asyncHandler(async(req,res) => {
 //@route POST /api/movies
 //@access Private
 const addMovie = asyncHandler(async(req,res) => {
-    if(!req.body.poster){
+    if(!req.body.Poster){
         res.status(400)
         throw new Error('please add a text field')
     }
     const movie = await Movie.create({
-        poster:req.body.poster,
-        title:req.body.title,
-        type:req.body.type,
-        year:req.body.year,
+        Poster:req.body.Poster,
+        Title:req.body.Title,
+        Type:req.body.Type,
+        Year:req.body.Year,
         imdbID:req.body.imdbID,
         user:req.user.id
     })

@@ -11,9 +11,8 @@ function MovieItem({movie}){
             <div>
                 {new Date(movie.createdAt).toLocaleString('en-US')}
             </div>
-            <h2>{movie.title}</h2>
-            <h2>{movie.poster}</h2>
-            <h2>{movie.type}</h2>
+            <h4>{movie.Title}</h4>
+            <img src={movie.Poster}></img>
             <button onClick = {()=>dispatch(deleteMovie(movie._id))} className="close">X</button>
         </div>
     )

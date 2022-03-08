@@ -40,8 +40,9 @@ function Dashboard() {
             {/* <MovieSearch/> */}
 
             <section className="content">
-                {console.log(movies)}
-
+                <Link to='/movieSearch'>
+                    <button>Add some movies?</button> 
+                </Link>
                 {movies.length > 0 ? (
                 <div className="goals">
                     {movies.map((movie) => (

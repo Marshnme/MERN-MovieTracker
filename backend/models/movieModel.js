@@ -6,19 +6,19 @@ const movieSchema = mongoose.Schema({
         required:true,
         ref:'User'
     },
-    poster:{
+    Poster:{
         type:String,
         required:true
     },
-    title:{
+    Title:{
         type:String,
         required:true
     },
-    type:{
+    Type:{
         type:String,
         required:true
     },
-    year:{
+    Year:{
         type:String,
         required:true
     },

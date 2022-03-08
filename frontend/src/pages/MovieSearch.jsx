@@ -1,10 +1,13 @@
 import {useState, useEffect } from 'react'
 import {useDispatch,useSelector} from 'react-redux'
-import { getAllMovies,reset } from '../features/movies/movieSlice'
+import { createMovie,getAllMovies,reset } from '../features/movies/movieSlice'
 import { useNavigate } from 'react-router-dom'
+import {FaList} from 'react-icons/fa'
 import Spinner from '../components/Spinner'
 import  './styles/movieSearchStyles.scss'
 function MovieSearch(){
+
+    
 
     const [searchQuery, setSearchQuery] = useState({
         Title:'',
@@ -13,6 +16,23 @@ function MovieSearch(){
 
     const {allMovies,isLoading, isError,message} = useSelector((state) => state.movies)
     const {user} = useSelector((state) => state.auth)
+
+
+    useEffect(() =>{
+        window.scrollTo(0, 0)
+        if(isError){
+            console.log(message)
+        }
+        if(!user){
+            navigate('/login')
+        }
+
+        dispatch(getAllMovies(searchQuery))
+
+        return () => {
+            dispatch(reset)
+        } 
+    },[searchQuery.Page])
   
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -22,6 +42,10 @@ function MovieSearch(){
             ...prevState,
             [e.target.name]:e.target.value
         }))
+    }
+
+    const addToList = ({title,}) =>{
+        dispatch(createMovie())
     }
 
 
@@ -56,21 +80,7 @@ function MovieSearch(){
         }
     }
     
-    useEffect(() =>{
-        window.scrollTo(0, 0)
-        if(isError){
-            console.log(message)
-        }
-        if(!user){
-            navigate('/login')
-        }
-
-        dispatch(getAllMovies(searchQuery))
-
-        return () => {
-            dispatch(reset)
-        } 
-    },[searchQuery.Page])
+    
     
     
     if(isLoading){
@@ -90,7 +100,7 @@ function MovieSearch(){
         )
     }
     return(
-        <div>
+        <div className="movie-search-parent">
             <div>
                 <form className='movie-search-form'onSubmit={searchForMovie}>
                     <input type='text' placeholder='Search for a movie' name="Title" value={searchQuery.Title} onChange={onChange}></input>
@@ -99,15 +109,15 @@ function MovieSearch(){
                 
             </div>
             <div  className='movie-list-wrapper'>
-                
+                {console.log(allMovies)}
                 {allMovies.map((movie) =>(
                     movie.Poster !== 'N/A' ? (
-                        <div key = {movie.imdbID} className='movie-wrapper'>
-                            <img src={movie.Poster}></img>
-                            <p>{movie.Title}</p>
-                            <span>{movie.Year}</span>
-                        </div>
                         
+                        <div key = {movie.imdbID} className='movie-wrapper'>
+                            <img src={movie.Poster}></img>  
+                            <p><FaList className='list-icon' onClick={() => {dispatch(createMovie(movie))}} /></p>
+                        </div>
+                       
                     ):(
                         <div key = {movie.imdbID} className='movie-wrapper'>
                             <h3>no Poster for movie</h3>
