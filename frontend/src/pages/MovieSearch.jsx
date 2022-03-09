@@ -16,7 +16,12 @@ function MovieSearch(){
 
     const {allMovies,isLoading, isError,message} = useSelector((state) => state.movies)
     const {user} = useSelector((state) => state.auth)
-
+    
+    const searchForMovie = (e) => {
+            e.preventDefault()
+            
+            dispatch(getAllMovies(searchQuery))
+        }
 
     useEffect(() =>{
         window.scrollTo(0, 0)
@@ -26,13 +31,16 @@ function MovieSearch(){
         if(!user){
             navigate('/login')
         }
-
+       
+        if(searchQuery.Title != ''){
         dispatch(getAllMovies(searchQuery))
+        }
+        
         return () => {
             dispatch(reset())
         } 
         
-    },[searchQuery.Page])
+    },[searchQuery.Page ])
   
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -44,11 +52,7 @@ function MovieSearch(){
         }))
     }
 
-    const searchForMovie = (e) => {
-        e.preventDefault()
-        
-        dispatch(getAllMovies(searchQuery))
-    }
+    
 
     const nextPage = (e) => {
         e.preventDefault()
@@ -81,8 +85,8 @@ function MovieSearch(){
     if(isLoading){
         <Spinner/>
     }
-
-    return (allMovies == undefined ? (
+    // console.log(allMovies.length ===0)
+    return (allMovies.length === 0 ? (
         <>
             <h3>Search for a movie</h3>
             <form onSubmit={searchForMovie}>

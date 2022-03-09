@@ -27,7 +27,7 @@ function Dashboard() {
         } 
     },[user,navigate,dispatch,isError,message])
 
-    if(isLoading === true){
+    if(isLoading){
         <Spinner/>
     }
     return(
