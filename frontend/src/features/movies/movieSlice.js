@@ -54,7 +54,13 @@ export const moviesSlice = createSlice({
     name:'movies',
     initialState,
     reducers:{
-        reset:(state) => initialState
+        reset:(state) => {
+            state.allMovies = []
+            state.isLoading = false
+            state.isSuccess = false
+            state.isError = false
+            state.message = ''
+        }
     },
     extraReducers:(builder) => {
         builder
@@ -73,6 +79,7 @@ export const moviesSlice = createSlice({
             })
             .addCase(getUserMovies.pending,(state) =>{
                 state.isLoading = true
+                state.isSuccess = false
             })
             .addCase(getUserMovies.fulfilled,(state,action) =>{
                 state.isLoading = false

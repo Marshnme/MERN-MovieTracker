@@ -28,10 +28,10 @@ function MovieSearch(){
         }
 
         dispatch(getAllMovies(searchQuery))
-
         return () => {
-            dispatch(reset)
+            dispatch(reset())
         } 
+        
     },[searchQuery.Page])
   
     const dispatch = useDispatch()
@@ -43,11 +43,6 @@ function MovieSearch(){
             [e.target.name]:e.target.value
         }))
     }
-
-    const addToList = ({title,}) =>{
-        dispatch(createMovie())
-    }
-
 
     const searchForMovie = (e) => {
         e.preventDefault()
@@ -87,7 +82,7 @@ function MovieSearch(){
         <Spinner/>
     }
 
-    return (allMovies === undefined ? (
+    return (allMovies == undefined ? (
         <>
             <h3>Search for a movie</h3>
             <form onSubmit={searchForMovie}>
