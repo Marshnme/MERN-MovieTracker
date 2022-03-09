@@ -87,26 +87,22 @@ function MovieSearch(){
         <Spinner/>
     }
 
-    if(allMovies === undefined){
-        return (
-            <>
-                <h3>Search for a movie</h3>
-                <form onSubmit={searchForMovie}>
-                    <input type='text' placeholder='Search for a movie' name="Title" value={searchQuery.Title} onChange={onChange}></input>
-                    <button type='submit' > Search </button>
-                </form>
-            </>
-        
-        )
-    }
-    return(
-        <div className="movie-search-parent">
-            <div>
-                <form className='movie-search-form'onSubmit={searchForMovie}>
-                    <input type='text' placeholder='Search for a movie' name="Title" value={searchQuery.Title} onChange={onChange}></input>
-                    <button type='submit' > Search </button>
-                </form>
-                
+    return (allMovies === undefined ? (
+        <>
+            <h3>Search for a movie</h3>
+            <form onSubmit={searchForMovie}>
+                <input type='text' placeholder='Search for a movie' name="Title" value={searchQuery.Title} onChange={onChange}></input>
+                <button type='submit' > Search </button>
+            </form>
+        </>
+        ):(
+            <div className="movie-search-parent">
+                <div>
+                    <h3>Search for a movie</h3>
+                    <form className='movie-search-form'onSubmit={searchForMovie}>
+                        <input type='text' placeholder='Search for a movie' name="Title" value={searchQuery.Title} onChange={onChange}></input>
+                        <button type='submit' > Search </button>
+                    </form> 
             </div>
             <div  className='movie-list-wrapper'>
             
@@ -129,7 +125,7 @@ function MovieSearch(){
             <button onClick={previousPage}>Previous Page</button>
             <button onClick={nextPage}>Next Page</button>
         </div>
-    )
+        ))
 }
 
 export default MovieSearch
