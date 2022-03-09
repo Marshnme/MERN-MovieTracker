@@ -109,7 +109,7 @@ function MovieSearch(){
                 
             </div>
             <div  className='movie-list-wrapper'>
-                {console.log(allMovies)}
+            
                 {allMovies.map((movie) =>(
                     movie.Poster !== 'N/A' ? (
                         

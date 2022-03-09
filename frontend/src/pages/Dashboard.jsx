@@ -40,15 +40,19 @@ function Dashboard() {
             {/* <MovieSearch/> */}
 
             <section className="content">
-                <Link to='/movieSearch'>
-                    <button>Add some movies?</button> 
-                </Link>
+                
                 {movies.length > 0 ? (
-                <div className="goals">
-                    {movies.map((movie) => (
-                        <MovieItem key={movie._id} movie={movie}/>
-                    ))}
-                </div>
+                    <>
+                        <Link to='/movieSearch'>
+                            <button>Add some movies?</button> 
+                        </Link>
+                        <div className="goals">
+                            {movies.map((movie) => (
+                                <MovieItem key={movie._id} movie={movie}/>
+                            ))}
+                        </div>
+                    </>
+                
                 ) : (
                     <>
                         <p>You havent added any movies</p>
