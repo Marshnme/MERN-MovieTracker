@@ -40,11 +40,13 @@ function Dashboard() {
             {/* <MovieSearch/> */}
 
             <section className="content">
+
                 {movies.length > 0 ? (
                     <>
                         <Link to='/movieSearch'>
                             <button>Add some movies?</button> 
                         </Link>
+
                     
                     <div className="goals">
                         {movies.map((movie) => (
@@ -52,6 +54,7 @@ function Dashboard() {
                         ))}
                     </div>
                     </>
+
                 ) : (
                     <>
                         <p>You havent added any movies</p>
