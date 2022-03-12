@@ -6,6 +6,10 @@ const movieSchema = mongoose.Schema({
         required:true,
         ref:'User'
     },
+    comment:{
+        type:String,
+        required:false
+    },
     Poster:{
         type:String,
         required:true

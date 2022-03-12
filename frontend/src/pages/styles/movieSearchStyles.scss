@@ -15,7 +15,7 @@
 
 .movie-wrapper {
   margin: 0.5rem 0rem;
-  max-width: 50%;
+  min-width: 30%;
   transition: 1s;
   &:hover {
     transform: scale(1.1);
