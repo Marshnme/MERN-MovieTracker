@@ -34,31 +34,11 @@ function MovieEdit(props) {
 
     const onSubmit = (e) =>{
         e.preventDefault()
-        // console.log("onsubmit",movie)
+        
         dispatch(updateMovie(movie))
-        // setToggleEdit(false)
-        // setMovies({
-        // poster:'',
-        // title:'',
-        // type:'',
-        // year:'',
-        // imdbID:''})
+        
     }
 
-
-    useEffect(()=>{
-        if(isError){
-            console.log(message)
-        }
-        if(!user){
-            navigate('/login')
-        }
-        
-        
-        return () => {
-            dispatch(reset())
-        }
-    },[movie.comment])
     return(
         <>
             <form onSubmit={onSubmit}>

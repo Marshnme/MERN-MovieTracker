@@ -22,11 +22,11 @@ function Dashboard() {
         }
 
         dispatch(getUserMovies())
-
+        
         return () => {
             dispatch(reset())
         } 
-    },[user,navigate,dispatch,isError,message])
+    },[user,navigate,dispatch,isError,message,movies])
 
     if(isLoading){
         <Spinner/>

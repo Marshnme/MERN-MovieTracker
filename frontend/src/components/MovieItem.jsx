@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {deleteMovie,updateMovie} from '../features/movies/movieSlice'
 import {FaEdit} from 'react-icons/fa'
@@ -11,6 +11,11 @@ function MovieItem({movie}){
 
     const dispatch = useDispatch()
 
+    useEffect(()=>{
+        if(toggleEdit){
+            setToggleEdit(false)
+        }
+    },[movie.comment])
 
     return(
         <div className="goal">
