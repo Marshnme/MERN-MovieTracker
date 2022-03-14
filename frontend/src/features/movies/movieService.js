@@ -44,6 +44,16 @@ const getUserMovies = async(token) =>{
     return response.data
 }
 
+const updateMovie = async(id,updateValue,token) => {
+    const config = {
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+    }
+    const response = await axios.update(API_URL + id,id,updateValue,config)
+    return response.data
+}
+
 const deleteMovie = async(movieId,token) => {
     const config = {
         headers:{
@@ -56,7 +66,7 @@ const deleteMovie = async(movieId,token) => {
 }
 
 const movieService = {
-    createMovie,getUserMovies,deleteMovie,getAllMovies
+    createMovie,getUserMovies,updateMovie,deleteMovie,getAllMovies
 }
 
 export default movieService
