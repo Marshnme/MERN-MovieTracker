@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 const API_URL = '/api/movies/'
 
 
@@ -44,13 +43,14 @@ const getUserMovies = async(token) =>{
     return response.data
 }
 
-const updateMovie = async(id,updateValue,token) => {
+const updateMovie = async(movie,token) => {
     const config = {
         headers:{
             Authorization:`Bearer ${token}`
         }
     }
-    const response = await axios.update(API_URL + id,id,updateValue,config)
+    const response = await axios.put(API_URL + movie._id,movie,config)
+    console.log(response.data)
     return response.data
 }
 

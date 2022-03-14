@@ -7,9 +7,10 @@ import MovieEdit from '../components/MovieEdit'
 function MovieItem({movie}){
 
     const [toggleEdit,setToggleEdit] = useState(null)
-    console.log(movie)
+    
 
     const dispatch = useDispatch()
+
 
     return(
         <div className="goal">
