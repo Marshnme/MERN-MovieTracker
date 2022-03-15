@@ -14,6 +14,7 @@ function Dashboard() {
     const {movies,isLoading, isError,message} = useSelector((state) => state.movies)
     
     useEffect(()=> {
+
         if(isError){
             console.log(message)
         }
@@ -26,7 +27,7 @@ function Dashboard() {
         return () => {
             dispatch(reset())
         } 
-    },[user,navigate,dispatch,isError,message,movies])
+    },[user,navigate,dispatch,isError,message])
 
     if(isLoading){
         <Spinner/>

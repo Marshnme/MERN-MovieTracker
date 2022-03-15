@@ -1,6 +1,6 @@
 import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import{updateMovie,reset} from '../features/movies/movieSlice'
+import{updateMovie,reset,getUserMovies} from '../features/movies/movieSlice'
 import {useState,useEffect} from 'react';
 
 
@@ -36,8 +36,21 @@ function MovieEdit(props) {
         e.preventDefault()
         
         dispatch(updateMovie(movie))
-        
+
     }
+    // useEffect(()=> {
+
+    //     if(isError){
+    //         console.log(message)
+    //     }
+    //     if(!user){
+    //         navigate('/login')
+    //     }
+    //     dispatch(getUserMovies())
+    //     return () => {
+    //         dispatch(reset())
+    //     } 
+    // },[props.movies])
 
     return(
         <>

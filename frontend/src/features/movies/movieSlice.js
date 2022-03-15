@@ -65,6 +65,7 @@ export const moviesSlice = createSlice({
     initialState,
     reducers:{
         reset:(state) => {
+            
             state.allMovies = []
             state.isLoading = false
             state.isSuccess = false
@@ -89,7 +90,7 @@ export const moviesSlice = createSlice({
             })
             .addCase(getUserMovies.pending,(state) =>{
                 state.isLoading = true
-                state.isSuccess = false
+                
             })
             .addCase(getUserMovies.fulfilled,(state,action) =>{
                 state.isLoading = false
@@ -116,11 +117,19 @@ export const moviesSlice = createSlice({
             })
             .addCase(updateMovie.pending,(state) =>{
                 state.isLoading = true
+                state.isSuccess=false
             })
             .addCase(updateMovie.fulfilled,(state,action) =>{
                 state.isLoading = false
                 state.isSuccess = true
-                state.movies = [...state,action.payload]
+                let updatedMovieArray = state.movies.map((movie)=>{
+                    if(movie._id === action.payload._id){
+                        return action.payload
+                    }else{
+                        return movie
+                    }
+                })
+                state.movies = updatedMovieArray
             })
             .addCase(updateMovie.rejected,(state,action) =>{
                 state.isLoading = false
