@@ -108,7 +108,14 @@ export const moviesSlice = createSlice({
             .addCase(getAllMovies.fulfilled,(state,action) =>{
                 state.isLoading = false
                 state.isSuccess = true
-                state.allMovies = action.payload
+                let filterGames = action.payload.filter((movie)=>{
+                    if(movie.Type === 'movie'){
+                        return movie
+                    }else{
+                        return 
+                    }
+                })
+                state.allMovies = filterGames
             })
             .addCase(getAllMovies.rejected,(state,action) =>{
                 state.isLoading = false
