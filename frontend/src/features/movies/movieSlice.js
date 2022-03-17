@@ -111,8 +111,6 @@ export const moviesSlice = createSlice({
                 let filterGames = action.payload.filter((movie)=>{
                     if(movie.Type === 'movie'){
                         return movie
-                    }else{
-                        return 
                     }
                 })
                 state.allMovies = filterGames

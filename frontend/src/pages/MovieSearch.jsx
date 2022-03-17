@@ -21,6 +21,10 @@ function MovieSearch(){
             e.preventDefault()
             
             dispatch(getAllMovies(searchQuery))
+            setSearchQuery({
+                Title:searchQuery.Title,
+                Page:"1"
+            })
         }
 
     useEffect(() =>{

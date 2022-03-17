@@ -6,6 +6,7 @@ import MovieSearch from '../components/MovieSearch';
 import Spinner from '../components/Spinner';
 import {getUserMovies,reset} from '../features/movies/movieSlice';
 import MovieItem from '../components/MovieItem';
+
 function Dashboard() {
     const navigate = useNavigate();
     const dispatch = useDispatch();

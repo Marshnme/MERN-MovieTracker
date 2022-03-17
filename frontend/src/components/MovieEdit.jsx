@@ -1,7 +1,7 @@
 import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import{updateMovie,reset,getUserMovies} from '../features/movies/movieSlice'
-import {useState,useEffect} from 'react';
+import{updateMovie,reset} from '../features/movies/movieSlice'
+import {useState} from 'react';
 
 
 function MovieEdit(props) {
