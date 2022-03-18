@@ -31,7 +31,7 @@ function Dashboard() {
     },[user,navigate,dispatch,isError,message])
 
     if(isLoading){
-        <Spinner/>
+       return <Spinner/>
     }
     return(
         <>

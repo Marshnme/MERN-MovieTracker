@@ -2,6 +2,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import{updateMovie,reset} from '../features/movies/movieSlice'
 import {useState} from 'react';
+import Spinner from '../components/Spinner';
 
 
 function MovieEdit(props) {
@@ -51,7 +52,9 @@ function MovieEdit(props) {
     //         dispatch(reset())
     //     } 
     // },[props.movies])
-
+    if(isLoading){
+        return <Spinner/>
+     }
     return(
         <>
             <form onSubmit={onSubmit}>

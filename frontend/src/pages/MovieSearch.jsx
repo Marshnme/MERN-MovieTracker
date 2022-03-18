@@ -7,16 +7,18 @@ import Spinner from '../components/Spinner'
 import  './styles/movieSearchStyles.scss'
 function MovieSearch(){
 
-    
+   
 
     const [searchQuery, setSearchQuery] = useState({
         Title:'',
         Page:"1",
     })
 
-    const {allMovies,isLoading, isError,message} = useSelector((state) => state.movies)
+    const {allMovies,isLoading, isError,message,noMovieReturn} = useSelector((state) => state.movies)
     const {user} = useSelector((state) => state.auth)
-    
+
+     console.log(allMovies)
+
     const searchForMovie = (e) => {
             e.preventDefault()
             
@@ -37,7 +39,7 @@ function MovieSearch(){
         }
        
         if(searchQuery.Title != ''){
-        dispatch(getAllMovies(searchQuery))
+            dispatch(getAllMovies(searchQuery))
         }
         
         return () => {
@@ -87,10 +89,24 @@ function MovieSearch(){
     
     
     if(isLoading){
-        <Spinner/>
+       return <Spinner/>
     }
-    // console.log(allMovies.length ===0)
-    return (allMovies.length === 0 ? (
+    if(noMovieReturn){
+        return(
+            <>
+            <h3>Search for a movie</h3>
+            <form onSubmit={searchForMovie}>
+                <input type='text' placeholder='Search for a movie' name="Title" value={searchQuery.Title} onChange={onChange}></input>
+                <button type='submit' > Search </button>
+            </form>
+            <div>
+                <h4>No movie found, check your spelling</h4>
+            </div>
+            </>
+        )
+    }
+    
+    return (allMovies.length === 0  ? (
         <>
             <h3>Search for a movie</h3>
             <form onSubmit={searchForMovie}>

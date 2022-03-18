@@ -8,7 +8,8 @@ const initialState = {
     isError: false,
     isSuccess : false,
     isLoading: false,
-    message:''
+    message:'',
+    noMovieReturn:false,
 }
 
 export const createMovie = createAsyncThunk('movie/create', async(movieData,thunkAPI) =>{
@@ -65,12 +66,12 @@ export const moviesSlice = createSlice({
     initialState,
     reducers:{
         reset:(state) => {
-            
             state.allMovies = []
             state.isLoading = false
             state.isSuccess = false
             state.isError = false
             state.message = ''
+            state.noMovieReturn = false
         }
     },
     extraReducers:(builder) => {
@@ -108,12 +109,24 @@ export const moviesSlice = createSlice({
             .addCase(getAllMovies.fulfilled,(state,action) =>{
                 state.isLoading = false
                 state.isSuccess = true
-                let filterGames = action.payload.filter((movie)=>{
-                    if(movie.Type === 'movie'){
-                        return movie
-                    }
-                })
-                state.allMovies = filterGames
+                if(!action.payload){
+                    state.noMovieReturn = true
+                } else{
+                    state.noMovieReturn = false
+                    let filterGames = action.payload.filter((movie)=>{
+                        if(movie.Type === 'movie'){
+                            return movie
+                        }
+                    })  
+                        state.allMovies = filterGames
+                }
+                // let filterGames = action.payload.filter((movie)=>{
+                //     if(movie.Type === 'movie'){
+                //         return movie
+                //     }
+                // })  
+                //     state.allMovies = filterGames
+                
             })
             .addCase(getAllMovies.rejected,(state,action) =>{
                 state.isLoading = false
