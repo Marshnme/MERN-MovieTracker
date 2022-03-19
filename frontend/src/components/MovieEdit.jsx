@@ -53,7 +53,7 @@ function MovieEdit(props) {
     //     } 
     // },[props.movies])
     if(isLoading){
-        return <Spinner/>
+        <Spinner/>
      }
     return(
         <>

@@ -30,7 +30,7 @@ function MovieSearch(){
         }
 
     useEffect(() =>{
-        window.scrollTo(0, 0)
+        // window.scrollTo(0, 0)
         if(isError){
             console.log(message)
         }
@@ -89,7 +89,7 @@ function MovieSearch(){
     
     
     if(isLoading){
-       return <Spinner/>
+       <Spinner/>
     }
     if(noMovieReturn){
         return(

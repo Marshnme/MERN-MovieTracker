@@ -86,29 +86,36 @@ export const moviesSlice = createSlice({
             })
             .addCase(createMovie.rejected,(state,action) =>{
                 state.isLoading = false
+                state.isSuccess = false
                 state.isError = true
                 state.message = action.payload
             })
             .addCase(getUserMovies.pending,(state) =>{
+                state.isSuccess = false
                 state.isLoading = true
-                
+                state.isError = false
             })
             .addCase(getUserMovies.fulfilled,(state,action) =>{
                 state.isLoading = false
                 state.isSuccess = true
+                state.isError = false
                 state.movies = action.payload
             })
             .addCase(getUserMovies.rejected,(state,action) =>{
+                state.isSuccess = false
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
             })
             .addCase(getAllMovies.pending,(state) =>{
                 state.isLoading = true
+                state.isSuccess = false
+                state.isError = false
             })
             .addCase(getAllMovies.fulfilled,(state,action) =>{
                 state.isLoading = false
                 state.isSuccess = true
+                state.isError = false
                 if(!action.payload){
                     state.noMovieReturn = true
                 } else{
@@ -120,15 +127,10 @@ export const moviesSlice = createSlice({
                     })  
                         state.allMovies = filterGames
                 }
-                // let filterGames = action.payload.filter((movie)=>{
-                //     if(movie.Type === 'movie'){
-                //         return movie
-                //     }
-                // })  
-                //     state.allMovies = filterGames
                 
             })
             .addCase(getAllMovies.rejected,(state,action) =>{
+                state.isSuccess = false
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
@@ -136,10 +138,12 @@ export const moviesSlice = createSlice({
             .addCase(updateMovie.pending,(state) =>{
                 state.isLoading = true
                 state.isSuccess=false
+                state.isError = false
             })
             .addCase(updateMovie.fulfilled,(state,action) =>{
                 state.isLoading = false
                 state.isSuccess = true
+                state.isError = false
                 let updatedMovieArray = state.movies.map((movie)=>{
                     if(movie._id === action.payload._id){
                         return action.payload
@@ -150,16 +154,20 @@ export const moviesSlice = createSlice({
                 state.movies = updatedMovieArray
             })
             .addCase(updateMovie.rejected,(state,action) =>{
+                state.isSuccess = false
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
             })
             .addCase(deleteMovie.pending,(state) =>{
                 state.isLoading = true
+                state.isSuccess = false
+                state.isError = false
             })
             .addCase(deleteMovie.fulfilled,(state,action) =>{
                 state.isLoading = false
                 state.isSuccess = true
+                state.isError = false
                 state.movies = state.movies.filter(
                     (movie) => movie._id !== action.payload.id
                 )
@@ -167,6 +175,7 @@ export const moviesSlice = createSlice({
             .addCase(deleteMovie.rejected,(state,action) =>{
                 state.isLoading = false
                 state.isError = true
+                state.isSuccess = false
                 state.message = action.payload
             })
     }
