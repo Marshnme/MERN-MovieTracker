@@ -6,6 +6,7 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import Header from './components/Header'
 import MovieSearch from './pages/MovieSearch'
+import MovieItemDetail from './components/MovieItemDetail'
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
             <Route path='/register' element={<Register/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
             <Route path='/movieSearch' element = {<MovieSearch/>}></Route>
+            <Route path='/movieDetail' element={<MovieItemDetail/>}></Route>
           </Routes>
       </div>
     </Router>
