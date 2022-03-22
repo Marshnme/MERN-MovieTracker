@@ -14,7 +14,7 @@ function MovieItemDetail(){
         <div className="movieDetail-parent">
             <div>
                 <img src={Poster}></img>
-                <span> <a href = {movieLink}>IMDB</a></span>
+                <p> <a href = {movieLink}>IMDB</a></p>
             </div>
             <div>
                 <p>Personal Comments</p>
